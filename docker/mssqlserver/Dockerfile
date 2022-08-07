@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/mssql/server:2022-latest
+FROM mcr.microsoft.com/mssql/server:2022-latest #õÌãæ÷úªòö¢Ôðª¹ªëªËªÏ¡¸image: mcr.microsoft.com/mssql/server:2022-latest¡¹ªÈª·ªÞª¹¡£
 
 USER root
 SHELL ["/bin/bash", "-c"]
