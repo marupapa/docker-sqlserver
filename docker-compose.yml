@@ -2,20 +2,21 @@ version: '3'
 
 services:
   mssql:
+    container_name: sqlserver-dev
     build:
-      context: ./docker/mssqlserver/
-    image: mssql
+      context: ./docker/sqlserver/
+    image: sqlserver
     ports:
-      - 1433:1433 # 7行目: ポート使用済みの場合、左側のポート番号を変更します。 例 1434:1433
+      - 1433:1433
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=maru0214 # パスワードポリシー(https://docs.microsoft.com/ja-jp/sql/relational-databases/security/password-policy?view=sql-server-ver15)
-      - MSSQL_PID=Express # SQL Serverのエディションまたはプロダクトキー
-      - MSSQL_LCID=1041 # ロケールID 日本語 (https://www.ryadel.com/en/microsoft-windows-lcid-list-decimal-and-hex-all-locale-codes-ids/)
-      - MSSQL_COLLATION=Japanese_CI_AS # 照合順
-      - DB_NAME=DEMO # 初回起動時のDB存在判定のために使用します。
+      - MSSQL_SA_PASSWORD=Password.1
+      - MSSQL_PID=Developer # Express # SQL Serverのエディションまたはプロダクトキー
+      - MSSQL_LCID=1042 # ロケールID 日本語 (https://www.ryadel.com/en/microsoft-windows-lcid-list-decimal-and-hex-all-locale-codes-ids/)
+    #  - MSSQL_COLLATION=Japanese_CI_AS # 照合順
+      - DB_NAME=sqlserver # 初回起動時のDB存在判定のために使用します。
     volumes: # docker-compose.yml ファイルのあるフォルダに mssqlserver フォルダが作成され、データが保存されます。
-      - ./docker/mssqlserver/initdb.d:/docker-entrypoint-initdb.d
-      - ./docker/mssqlserver/data:/var/opt/mssql/data
-      - ./docker/mssqlserver/log:/var/opt/mssql/log
-      - ./docker/mssqlserver/secrets:/var/opt/mssql/sec
+      - ./docker/sqlserver/initdb.d:/docker-entrypoint-initdb.d
+      - ./docker/sqlserver/data:/var/opt/mssql/data
+      - ./docker/sqlserver/log:/var/opt/mssql/log
+      - ./docker/sqlserver/secrets:/var/opt/mssql/sec

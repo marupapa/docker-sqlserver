@@ -8,7 +8,6 @@ WORKDIR /docker-entrypoint-initdb.d
 COPY ./initdb.d/ /docker-entrypoint-initdb.d/
 RUN chmod -R +x /docker-entrypoint-initdb.d
 
-
 EXPOSE 1433
 
 ENTRYPOINT ["/bin/bash", "./entrypoint.sh"]

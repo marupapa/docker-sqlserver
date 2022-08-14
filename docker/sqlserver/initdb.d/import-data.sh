@@ -4,7 +4,6 @@ sleep 20
 
 echo "DB_NAME>>"$DB_NAME
 
-
 if [ `ls -U1 /var/opt/mssql/data | grep $DB_NAME | wc -l` -eq 0 ]; then
     cd /docker-entrypoint-initdb.d
     sql_files=`ls *.sql`
